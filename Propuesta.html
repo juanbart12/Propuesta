@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta para el 14 de Febrero</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            animation: fadeIn 2s ease-in-out;
+            position: relative;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: #e91e63;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+        p {
+            font-size: 1.5em;
+            margin-bottom: 30px;
+            color: #333;
+            animation: slideIn 1.5s ease-in-out;
+        }
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        button {
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        button:hover {
+            background-color: #d81b60;
+            transform: scale(1.1);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+        button:active {
+            transform: scale(0.95);
+        }
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .hearts span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: #ff6b6b;
+            box-shadow: 0 0 10px #ff6b6b, 0 0 20px #ff6b6b, 0 0 40px #ff6b6b;
+            border-radius: 50%;
+            animation: animateHearts 5s linear infinite;
+            bottom: -20px;
+        }
+        .hearts span:nth-child(1) {
+            left: 25%;
+            animation-delay: 0s;
+        }
+        .hearts span:nth-child(2) {
+            left: 50%;
+            animation-delay: 2s;
+        }
+        .hearts span:nth-child(3) {
+            left: 75%;
+            animation-delay: 4s;
+        }
+        .hearts span:nth-child(4) {
+            left: 10%;
+            animation-delay: 6s;
+        }
+        .hearts span:nth-child(5) {
+            left: 90%;
+            animation-delay: 8s;
+        }
+        .bear {
+            display: none;
+            margin-top: 20px;
+            font-size: 5em;
+            animation: bounce 1s infinite;
+        }
+        .sad-bear {
+            display: none;
+            margin-top: 20px;
+            font-size: 5em;
+            animation: shake 0.5s infinite;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes animateHearts {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+            100% { transform: translateX(0); }
+        }
+        @keyframes move {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-20px); }
+            50% { transform: translateX(20px); }
+            75% { transform: translateX(-20px); }
+            100% { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="container">
+        <h1>¿Quieres ser mi acompañante el 14 de Febrero?</h1>
+        <p>¡Espero que aceptes esta propuesta especial mi amor!</p>
+        <div class="buttons">
+            <button onclick="responder('si')">¡Sí, claro mi amor, contigo todo!</button>
+            <button id="think-button" onclick="moveButton()">Lo pensaré, perdon</button>
+        </div>
+        <div id="happy-bear" class="bear">🐻❤️</div>
+        <div id="sad-bear" class="sad-bear">🐻😢</div>
+    </div>
+
+    <script>
+        function responder(respuesta) {
+            const happyBear = document.getElementById('happy-bear');
+            const sadBear = document.getElementById('sad-bear');
+            const thinkButton = document.getElementById('think-button');
+
+            if (respuesta === 'si') {
+                happyBear.style.display = 'block';
+                sadBear.style.display = 'none';
+                alert('¡Genial Mi amor! Estoy muy emocionado por compartir ese dia contigo. ¡Será un día increíble para los 2 amor!');
+            } else {
+                thinkButton.style.animation = 'none'; // Detener la animación de movimiento
+                setTimeout(() => {
+                    sadBear.style.display = 'block';
+                    happyBear.style.display = 'none';
+                    alert('¡Oh! Bueno, espero que lo pienses. ¡Sería genial pasar el día contigo!');
+                }, 500);
+            }
+        }
+
+        function moveButton() {
+            const thinkButton = document.getElementById('think-button');
+            thinkButton.style.animation = 'move 0.5s linear';
+        }
+    </script>
+</body>
+</html>
